@@ -8,7 +8,7 @@
 'use strict';
 
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
+// const CopyPlugin = require('copy-webpack-plugin');
 
 /**
  * @typedef {import('webpack').Configuration} WebpackConfig
@@ -19,7 +19,10 @@ const commonConfig = {
 	mode: 'none', // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
 	devtool: 'source-map',
 	resolve: {
-		extensions: ['.ts', '.js']
+		extensions: ['.ts', '.js'],
+		extensionAlias: {
+			'.js': ['.ts', '.js']
+		}
 	},
 	module: {
 		rules: [{
@@ -46,7 +49,7 @@ function withDefaults(config) {
 		...config,
 	};
 	newConfig.output = {
-		path: path.resolve(config.context, 'out'),
+		path: path.resolve(config.context || __dirname, 'out'),
 		filename: '[name].js',
 		libraryTarget: 'commonjs2',
 		...config.output,
@@ -76,7 +79,7 @@ function browser(config, options) {
 		target: 'webworker',
 	};
 	newConfig.output = {
-		path: path.resolve(config.context, 'dist', 'browser'),
+		path: path.resolve(config.context || __dirname, 'dist', 'browser'),
 		filename: '[name].js',
 		libraryTarget: 'commonjs',
 		...config.output,
@@ -84,6 +87,7 @@ function browser(config, options) {
 	newConfig.resolve = {
 		...newConfig.resolve,
 		mainFields: ['browser', 'module', 'main'],
+		...config.resolve,
 	};
 	return newConfig;
 }

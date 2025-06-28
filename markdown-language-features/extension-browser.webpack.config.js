@@ -8,15 +8,38 @@
 'use strict';
 
 const CopyPlugin = require('copy-webpack-plugin');
-const { browserPlugins, browser } = require('../shared.webpack.config');
+const { browser } = require('../shared.webpack.config');
 
 module.exports = browser({
 	context: __dirname,
+	resolve: {
+		extensions: ['.ts', '.js'],
+		fallback: {
+			"path": false,
+			"https": false,
+			"http": false,
+			"os": false,
+			"crypto": false,
+			"fs": false,
+			"child_process": false
+		}
+	},
 	entry: {
 		extension: './src/extension.browser.ts'
 	},
+	module: {
+		rules: [{
+			test: /\.ts$/,
+			exclude: [/node_modules/, /src\/test/],
+			use: [{
+				loader: 'ts-loader',
+				options: {
+					configFile: 'tsconfig.browser.json'
+				}
+			}]
+		}]
+	},
 	plugins: [
-		...browserPlugins(__dirname), // add plugins, don't replace inherited
 		new CopyPlugin({
 			patterns: [
 				{

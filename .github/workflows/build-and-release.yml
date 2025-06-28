@@ -7,17 +7,12 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - 'jason-markdown/**'
-      - '.github/workflows/**'
+      - '**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')))
-    
-    defaults:
-      run:
-        working-directory: ./jason-markdown
     
     steps:
     - name: Checkout code
@@ -28,12 +23,11 @@ jobs:
       with:
         node-version: '18'
         cache: 'npm'
-        cache-dependency-path: |
-          jason-markdown/package-lock.json
-          jason-markdown/markdown-language-features/package-lock.json
-          jason-markdown/markdown-math/package-lock.json
     
-    - name: Install dependencies
+    - name: Install root dependencies
+      run: npm install
+    
+    - name: Install all dependencies
       run: npm run install-all
     
     - name: Build extension
@@ -46,17 +40,13 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: jason-markdown-vsix
-        path: jason-markdown/*.vsix
+        path: '*.vsix'
         retention-days: 30
 
   release:
     needs: build
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-    
-    defaults:
-      run:
-        working-directory: ./jason-markdown
     
     permissions:
       contents: write
@@ -69,7 +59,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: jason-markdown-vsix
-        path: ./jason-markdown/
+        path: ./
     
     - name: Get version from tag
       id: get_version
@@ -95,7 +85,7 @@ jobs:
           Or install through VS Code Extensions view: Extensions → ... → Install from VSIX
           
         files: |
-          jason-markdown/*.vsix
+          *.vsix
         draft: false
         prerelease: false
       env:

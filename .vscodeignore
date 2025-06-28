@@ -43,8 +43,12 @@ markdown-math/cgmanifest.json
 *.vsix
 *.bak
 
-# Exclude root node_modules, as they will be bundled by vsce.
+# Exclude ALL node_modules directories to dramatically reduce file count
 node_modules
+**/node_modules/
+markdown-language-features/node_modules/**
+markdown-math/node_modules/**
+markdown-basics/node_modules/**
 
 # Source files
 src/**
@@ -65,8 +69,9 @@ webpack.config.js
 rollup.config.js
 vite.config.js
 
-# Development dependencies
+# Development dependencies - exclude ALL node_modules everywhere
 node_modules/**
+**/node_modules/**
 .npm
 .yarn
 
