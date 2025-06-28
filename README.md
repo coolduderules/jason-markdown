@@ -2,11 +2,20 @@
 
 ## Jason's Markdown
 
-This extension provides a unified modified Markdown experience for Visual Studio Code to suit my own personal needs, it is highly opinionated but extremely close to the original vscode markdown experience. It integrates core syntax highlighting, advanced language features like preview and intellisense, and KaTeX-powered math rendering into a single package with the goal of making it easier to parse nested code blocks with certain proprietary software.
+This extension provides a unified, modified Markdown experience for Visual Studio Code, tailored for a specific workflow. It is highly opinionated but based on the original VS Code Markdown extension. Its primary purpose is to make parsing nested code blocks easier by using a different fence character.
+
+To use this extension, you may need to configure VS Code to associate it with `.md` files, as it now uses a unique language identifier (`jason-markdown`) to avoid conflicts with the built-in Markdown support. You can do this in your `settings.json`:
+
+```json
+"files.associations": {
+  "*.md": "jason-markdown"
+}
+```
 
 ## Features
 
-* **Custom Code Fence Syntax**: Uses `'''` for fenced code blocks for a cleaner aesthetic.
+* **Custom Code Fence Syntax**: Uses `'''` for fenced code blocks instead of ` ``` `.
+* **Custom Comment Syntax**: Uses `//` for line comments.
 * **Rich Markdown Preview**: Live preview of your Markdown files that scrolls in sync with the editor.
 * **Math Rendering**: Inline and block-level mathematical notation rendering using KaTeX.
 * **Smart Link Handling**: Automatic path completion, link validation, and updates on file rename.
@@ -14,8 +23,8 @@ This extension provides a unified modified Markdown experience for Visual Studio
 
 ## Configuration
 
-The extension merges the standard VS Code Markdown settings. You can configure it via the settings UI under "Markdown". Key settings include:
+The extension merges the standard VS Code Markdown settings. You can configure it via the settings UI under "Jason's Markdown". Key settings include:
 
-* `markdown.math.enabled`: Enable or disable KaTeX math rendering.
-* `markdown.math.macros`: Define custom KaTeX macros.
-* `markdown.styles`: Provide custom CSS to style the Markdown preview.
+* `jason-markdown.math.enabled`: Enable or disable KaTeX math rendering.
+* `jason-markdown.math.macros`: Define custom KaTeX macros.
+* `jason-markdown.styles`: Provide custom CSS to style the Markdown preview.

@@ -2,7 +2,7 @@
   "name": "jason-markdown",
   "displayName": "Jason's Markdown",
   "description": "Jason's Markdown: swaps ``` and ''' for code block fencing and adds // for comments -- makes parsing nested code blocks easier sometimes, completely opinionated and arbitrary so use on your own whim.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "JASON",
   "license": "MIT",
   "icon": "markdown-language-features/icon.png",
@@ -18,7 +18,7 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "onLanguage:markdown",
+    "onLanguage:jason-markdown",
     "onCommand:markdown.api.render",
     "onCommand:markdown.api.reloadPlugins",
     "onWebviewPanel:markdown.preview"
@@ -36,10 +36,10 @@
   "contributes": {
     "languages": [
       {
-        "id": "markdown",
+        "id": "jason-markdown",
         "aliases": [
-          "Markdown",
-          "markdown"
+          "Jason's Markdown",
+          "jason-markdown"
         ],
         "extensions": [
           ".md",
@@ -61,7 +61,7 @@
     ],
     "grammars": [
       {
-        "language": "markdown",
+        "language": "jason-markdown",
         "scopeName": "text.html.markdown",
         "path": "./markdown-basics/syntaxes/markdown.tmLanguage.json",
         "embeddedLanguages": {
@@ -151,7 +151,7 @@
     ],
     "snippets": [
       {
-        "language": "markdown",
+        "language": "jason-markdown",
         "path": "./markdown-basics/snippets/markdown.code-snippets"
       }
     ],
@@ -245,13 +245,13 @@
         "command": "markdown.editor.insertLinkFromWorkspace",
         "title": "%markdown.editor.insertLinkFromWorkspace%",
         "category": "Markdown",
-        "enablement": "editorLangId == markdown && !activeEditorIsReadonly"
+        "enablement": "editorLangId == 'jason-markdown' && !activeEditorIsReadonly"
       },
       {
         "command": "markdown.editor.insertImageFromWorkspace",
         "title": "%markdown.editor.insertImageFromWorkspace%",
         "category": "Markdown",
-        "enablement": "editorLangId == markdown && !activeEditorIsReadonly"
+        "enablement": "editorLangId == 'jason-markdown' && !activeEditorIsReadonly"
       }
     ],
     "menus": {
@@ -268,7 +268,7 @@
       "editor/title": [
         {
           "command": "markdown.showPreviewToSide",
-          "when": "editorLangId == markdown && !notebookEditorFocused && !hasCustomMarkdownPreview",
+          "when": "editorLangId == 'jason-markdown' && !notebookEditorFocused && !hasCustomMarkdownPreview",
           "alt": "markdown.showPreview",
           "group": "navigation"
         },
@@ -296,24 +296,24 @@
       "explorer/context": [
         {
           "command": "markdown.showPreview",
-          "when": "resourceLangId == markdown && !hasCustomMarkdownPreview",
+          "when": "resourceLangId == 'jason-markdown' && !hasCustomMarkdownPreview",
           "group": "navigation"
         },
         {
           "command": "markdown.findAllFileReferences",
-          "when": "resourceLangId == markdown",
+          "when": "resourceLangId == 'jason-markdown'",
           "group": "4_search"
         }
       ],
       "editor/title/context": [
         {
           "command": "markdown.showPreview",
-          "when": "resourceLangId == markdown && !hasCustomMarkdownPreview",
+          "when": "resourceLangId == 'jason-markdown' && !hasCustomMarkdownPreview",
           "group": "1_open"
         },
         {
           "command": "markdown.findAllFileReferences",
-          "when": "resourceLangId == markdown"
+          "when": "resourceLangId == 'jason-markdown'"
         }
       ],
       "commandPalette": [
@@ -327,15 +327,15 @@
         },
         {
           "command": "markdown.showPreview",
-          "when": "editorLangId == markdown && !notebookEditorFocused"
+          "when": "editorLangId == 'jason-markdown' && !notebookEditorFocused"
         },
         {
           "command": "markdown.showPreviewToSide",
-          "when": "editorLangId == markdown && !notebookEditorFocused"
+          "when": "editorLangId == 'jason-markdown' && !notebookEditorFocused"
         },
         {
           "command": "markdown.showLockedPreviewToSide",
-          "when": "editorLangId == markdown && !notebookEditorFocused"
+          "when": "editorLangId == 'jason-markdown' && !notebookEditorFocused"
         },
         {
           "command": "markdown.showSource",
@@ -348,26 +348,26 @@
         "command": "markdown.showPreview",
         "key": "shift+ctrl+v",
         "mac": "shift+cmd+v",
-        "when": "editorLangId == markdown && !notebookEditorFocused"
+        "when": "editorLangId == 'jason-markdown' && !notebookEditorFocused"
       },
       {
         "command": "markdown.showPreviewToSide",
         "key": "ctrl+k v",
         "mac": "cmd+k v",
-        "when": "editorLangId == markdown && !notebookEditorFocused"
+        "when": "editorLangId == 'jason-markdown' && !notebookEditorFocused"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "Markdown",
+      "title": "Jason's Markdown",
       "order": 20,
       "properties": {
-        "markdown.math.enabled": {
+        "jason-markdown.math.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Enable/disable rendering math in the built-in Markdown preview."
         },
-        "markdown.math.macros": {
+        "jason-markdown.math.macros": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -376,7 +376,7 @@
           "description": "A collection of custom macros. Each macro is a key-value pair where the key is a new command name and the value is the expansion of the macro.",
           "scope": "resource"
         },
-        "markdown.styles": {
+        "jason-markdown.styles": {
           "type": "array",
           "items": {
             "type": "string"
@@ -388,13 +388,16 @@
       }
     },
     "configurationDefaults": {
-      "[markdown]": {
+      "[jason-markdown]": {
         "editor.wordWrap": "on",
         "editor.quickSuggestions": {
           "comments": "off",
           "strings": "off",
           "other": "off"
-        }
+        },
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "diffEditor.ignoreTrimWhitespace": false
       }
     },
     "customEditors": [
@@ -405,6 +408,30 @@
         "selector": [
           {
             "filenamePattern": "*.md"
+          },
+          {
+            "filenamePattern": "*.mkd"
+          },
+          {
+            "filenamePattern": "*.mdwn"
+          },
+          {
+            "filenamePattern": "*.mdown"
+          },
+          {
+            "filenamePattern": "*.markdown"
+          },
+          {
+            "filenamePattern": "*.markdn"
+          },
+          {
+            "filenamePattern": "*.mdtxt"
+          },
+          {
+            "filenamePattern": "*.mdtext"
+          },
+          {
+            "filenamePattern": "*.workbook"
           }
         ]
       }
@@ -452,3 +479,5 @@
     "vscode-markdown-languageservice": "^0.3.0-alpha.3"
   }
 }
+
+

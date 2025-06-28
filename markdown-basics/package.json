@@ -1,5 +1,5 @@
 {
-  "name": "markdown",
+  "name": "jason-markdown-basics",
   "displayName": "%displayName%",
   "description": "%description%",
   "version": "1.0.0",
@@ -8,14 +8,16 @@
   "engines": {
     "vscode": "^1.20.0"
   },
-  "categories": ["Programming Languages"],
+  "categories": [
+    "Programming Languages"
+  ],
   "contributes": {
     "languages": [
       {
-        "id": "markdown",
+        "id": "jason-markdown",
         "aliases": [
-          "Markdown",
-          "markdown"
+          "Jason's Markdown",
+          "jason-markdown"
         ],
         "extensions": [
           ".md",
@@ -33,7 +35,7 @@
     ],
     "grammars": [
       {
-        "language": "markdown",
+        "language": "jason-markdown",
         "scopeName": "text.html.markdown",
         "path": "./syntaxes/markdown.tmLanguage.json",
         "embeddedLanguages": {
@@ -91,12 +93,12 @@
     ],
     "snippets": [
       {
-        "language": "markdown",
+        "language": "jason-markdown",
         "path": "./snippets/markdown.code-snippets"
       }
     ],
     "configurationDefaults": {
-      "[markdown]": {
+      "[jason-markdown]": {
         "editor.unicodeHighlight.ambiguousCharacters": false,
         "editor.unicodeHighlight.invisibleCharacters": false,
         "diffEditor.ignoreTrimWhitespace": false
