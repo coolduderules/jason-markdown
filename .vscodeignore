@@ -1,0 +1,134 @@
+# .vscodeignore
+# This file tells the packager which files to exclude from the .vsix package.
+
+# Exclude source code and configuration files from sub-projects.
+# Compiled output (out, dist, notebook-out) should NOT be excluded.
+**/src
+**/test
+**/test-workspace
+**/*.ts
+**/*.map
+!**/*.d.ts
+
+# Exclude build and dependency management files from sub-projects.
+markdown-basics/package.json
+markdown-basics/package-lock.json
+markdown-basics/tsconfig.json
+markdown-basics/.vscodeignore
+
+markdown-language-features/package.json
+markdown-language-features/package-lock.json
+markdown-language-features/tsconfig*.json
+markdown-language-features/webpack.config.js
+markdown-language-features/extension-*.webpack.config.js
+markdown-language-features/esbuild-*.js
+markdown-language-features/.vscodeignore
+markdown-language-features/.npmrc
+markdown-language-features/cgmanifest.json
+markdown-language-features/schemas
+
+markdown-math/package.json
+markdown-math/package-lock.json
+markdown-math/tsconfig.json
+markdown-math/webpack.config.js
+markdown-math/extension-*.webpack.config.js
+markdown-math/esbuild.js
+markdown-math/.vscodeignore
+markdown-math/.npmrc
+markdown-math/cgmanifest.json
+
+# Exclude global dev files
+.git
+.gitignore
+*.vsix
+*.bak
+
+# Exclude root node_modules, as they will be bundled by vsce.
+node_modules
+
+# Source files
+src/**
+tests/**
+test/**
+*.test.js
+*.test.ts
+
+# Build tools and configs
+.github/**
+scripts/**
+*.config.js
+*.config.ts
+tsconfig*.json
+.eslintrc*
+.prettierrc*
+webpack.config.js
+rollup.config.js
+vite.config.js
+
+# Development dependencies
+node_modules/**
+.npm
+.yarn
+
+# Git and version control
+.git/**
+.gitignore
+.gitattributes
+
+# Documentation and development files
+README*.md
+CHANGELOG*.md
+CONTRIBUTING*.md
+docs/**
+*.md
+
+# Keep LICENSE file
+!LICENSE
+
+# IDE and editor files
+.vscode/**
+.idea/**
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+logs/**
+tmp/**
+temp/**
+
+# Coverage and test reports
+coverage/**
+.nyc_output/**
+.coverage/**
+
+# Build artifacts that shouldn't be included
+*.tsbuildinfo
+*.tgz
+*.vsix
+
+# Specific to our extension
+markdown-language-features/src/**
+markdown-language-features/test/**
+markdown-language-features/tests/**
+markdown-language-features/tsconfig*.json
+markdown-language-features/webpack*.js
+markdown-language-features/esbuild*.js
+markdown-language-features/.eslintrc*
+markdown-language-features/node_modules/.cache/**
+
+markdown-math/src/**
+markdown-math/test/**
+markdown-math/tests/**
+markdown-math/esbuild.js
+markdown-math/node_modules/.cache/**
+
+# Keep only essential built files
+!markdown-language-features/notebook-out/**
+!markdown-language-features/media/**
+!markdown-math/notebook-out/**
