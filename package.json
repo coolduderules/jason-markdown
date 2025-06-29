@@ -2,7 +2,7 @@
   "name": "jason-markdown",
   "displayName": "Jason's Markdown",
   "description": "Jason's Markdown: swaps ``` and ''' for code block fencing and adds // for comments -- makes parsing nested code blocks easier sometimes, completely opinionated and arbitrary so use on your own whim.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "publisher": "JASON",
   "license": "MIT",
   "icon": "markdown-language-features/icon.png",
