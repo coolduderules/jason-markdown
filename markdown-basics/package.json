@@ -43,6 +43,7 @@
           "source.js": "javascript",
           "source.css": "css",
           "meta.embedded.block.frontmatter": "yaml",
+          "meta.embedded.block.bash": "shellscript",
           "meta.embedded.block.css": "css",
           "meta.embedded.block.ini": "ini",
           "meta.embedded.block.java": "java",
